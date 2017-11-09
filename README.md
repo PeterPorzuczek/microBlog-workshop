@@ -3,7 +3,7 @@
 Web application created as an example use of Spring Boot. Built on Lider Workshop Days.
 Simple app for collecting interesting information with source.
 
-For workshop participants - [project site](https://peterporzuczek.github.io/microBlog-workshop/)
+For workshop participants - [Project site](https://peterporzuczek.github.io/microBlog-workshop/)
 
 Live version - [MicroBlog](https://lider-microblog.herokuapp.com) (Refresh page few times to wake Heroku up :)
 
