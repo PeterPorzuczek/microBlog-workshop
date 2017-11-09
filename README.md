@@ -2,7 +2,7 @@
 Web application created as an example use of Spring Boot. Built during workshop I did for Lider Workshop Days.
 
 Here you can check out the live version:
-[MicroBlog](https://lider-microblog.herokuapp.com)
+[MicroBlog](https://lider-microblog.herokuapp.com) (Refresh page few times to wake Heroku up :))
 
 Screenshots
 ========
