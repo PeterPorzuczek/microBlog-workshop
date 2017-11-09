@@ -1,11 +1,10 @@
 # Spring Framework Live Coding MicroBlog Workshop
 # Lider Workshop Days
 Web application created as an example use of Spring Boot. Built on Lider Workshop Days.
-Here you can check out the live version:
-[MicroBlog](https://lider-microblog.herokuapp.com)
-
-Tutorial in polish:
-[MicroBlog](https://lider-microblog.herokuapp.com)
+Simple app for collecting interesting information with source.
+Here you can check out the live version:[MicroBlog](https://lider-microblog.herokuapp.com) (Refresh page few times to wake Heroku up :)
+Presentation in polish: [Prezentacja](https://drive.google.com/file/d/1VuVEQ0u3sbxhr7N1afcEO4SqBsX7pSUA/view?usp=sharing)
+Other [options](https://peterporzuczek.github.io/microBlog-workshop/)
 
 Screenshots
 ========
@@ -15,19 +14,19 @@ Screenshots
 
 Deployment
 ========
-First compile application
+Compile application
 ----
 	$ ./mvnw clean install
 ----
-Than run application
+Run application
 ----
 	$ ./mvnw spring-boot:run
 
 Built With
 ========
-* [spring](https://spring.io) - Spring Boot used.
-* [nebular](https://github.com/akveo/nebular) - Nebular CSS style classes.
-* [bootstrap-4](https://v4-alpha.getbootstrap.com) - Nebular is based on bootstrap 4.
+* [Spring](https://spring.io) - Spring Boot used.
+* [Nebular](https://github.com/akveo/nebular) - Nebular CSS style classes.
+* [Bbootstrap-4](https://v4-alpha.getbootstrap.com) - Nebular is based on bootstrap 4.
 * [Jquery](https://jquery.com) - For web requests.
 
 License
