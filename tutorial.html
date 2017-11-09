@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+		<title>SpringWorkshop</title>
+		<script src="/js/jquery-3.2.1.min.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+		<link rel="stylesheet" href="css/default.css" type="text/css" />
+		<link rel="stylesheet" href="css/cosmic.css" type="text/css" />
+        <link rel="stylesheet" href="css/fonts.css" type="text/css" />
+        <link rel="stylesheet" href="css/codeRay.css" type="text/css" />
+	</head>
+	
+	<body id="body" class="nb-theme-default" >
+		<nb-layout>
+		<div class="scrollable-container">
+			<div class="layout">
+				<nb-layout-header class="fixed">
+				<nav class="fixed">
+					<div class="row">
+						<div class="col-sm-10">
+							<a href="http://lwd2017.pl">
+								<img class="navLogo" src="assets/logoSite.svg" type="image/svg+xml" />
+							</a>
+						</div>
+						<div class="col-sm-1;"  >
+							<a class="btn btn-hero-success main-btn" style="display:none" target="_blank">
+							</a>
+						</div>
+					</div>
+				</nav>
+				</nb-layout-header>
+				<div class="content">
+					<div class="columns">
+						<nb-layout-column class="main-content">
+							<div class="row">
+                                <nb-card class="w-100" >
+                                    <nb-card-header style="line-height:30px; width: auto; display: block; text-align: left" >
+                                        <h5 style="color:#3D3780 !important; font-family:'League Spartan' !important">Spring Framework Live Coding </h5></br><h1 style="color:#3D3780 !important; font-family:'League Spartan' !important">Tutorial</h1>
+                                    </nb-card-header>
+                                    <nb-card-body>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 pb-5" >
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                Poniszy tutorial jest wyłącznie skryptem tworzenia projektu podczas warsztatu. Opisy czemu/dlaczego są skrótowe lub ich brak. Jest to przypomnienie dla osób uczestniczących jaki był przebieg warsztatu.
+                                            </p>
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">  Zaczynamy od pobrania IDE z <a href="https://spring.io/tools/sts/all">https://spring.io/tools/sts/all</a> i rozpakowania
+                                                Następnie musimy pobrać <a href="https://projectlombok.org/download">https://projectlombok.org/download</a> i zainstalować poprzez uruchomienie pliku "lombok.jar". Możemy przystąpić do pracy uruchamiając środowisko STS.
+                                            </p>
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                Po uruchomieniu wybieramy File -> New -> SpringStarterProject. W nowym oknie zmieniamy packaging na "War". Następnie wybieramy nasze dependencies: DevTools, Lombok, JPA, H2, POstgreSQL, Thymeleaf, Web.
+                                            </br>
+                                            </p>
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Po utworzeniu projektu klikając na główny package New -> Package tworzymy nowe package takie jak model, repository, service, controller.
+                                                    W com.lwd.microBlog.model tworzymy klasę Post tak jak poniżej (Należy pamiętać aby zaimportować wszystkie zależności). 
+                                            </br>
+                                            </p>
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a></pre></td>
+  <td class="code"><pre><span title="Annotation" class="annotation">@Entity</span><span title="Space">
+</span><span title="Annotation" class="annotation">@Getter</span><span title="Space">
+</span><span title="Annotation" class="annotation">@Setter</span><span title="Space">
+</span><span title="Annotation" class="annotation">@AllArgsConstructor</span><span title="Space">
+</span><span title="Annotation" class="annotation">@NoArgsConstructor</span><span title="Space">
+</span><span title="Annotation" class="annotation">@ToString</span><span title="Space">
+</span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Type" class="type">class</span><span title="Space"> </span><span title="Class" class="class">Post</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+
+  </span><span title="Annotation" class="annotation">@Id</span><span title="Space">
+  </span><span title="Annotation" class="annotation">@GeneratedValue</span><span title="Space">
+  </span><span title="Directive" class="directive">private</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">Long</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Directive" class="directive">private</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">title</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Directive" class="directive">private</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">description</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Directive" class="directive">private</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">source</span><span title="Operator">;</span><span title="Space">
+</span><span title="Operator">}</span><span title="Space">
+</span></pre></td>
+</tr></tbody></table>
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Następnie tworzymy interfejs rozszerzający JPA o nazwie PostRepository z adnotacją @Repository.
+                                            </br>
+                                            </p>
+
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a></pre></td>
+  <td class="code"><pre><span title="Annotation" class="annotation">@Repository</span><span title="Space">
+</span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Type" class="type">interface</span><span title="Space"> </span><span title="Class" class="class">PostRepository</span><span title="Space"> </span><span title="Directive" class="directive">extends</span><span title="Space"> </span><span title="Ident">JpaRepository</span><span title="Operator">&lt;</span><span title="Ident">Post</span><span title="Operator">,</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">Serializable</span><span title="Operator">&gt;</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+
+  </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">findOneById</span><span title="Operator">(</span><span title="Predefined Type" class="predefined-type">Long</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">findOneByTitle</span><span title="Operator">(</span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">title</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">findOneByDescription</span><span title="Operator">(</span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">description</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">findOneBySource</span><span title="Operator">(</span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">source</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@Modifying</span><span title="Space">
+  </span><span title="Annotation" class="annotation">@Transactional</span><span title="Space">
+  </span><span title="Annotation" class="annotation">@Query</span><span title="Operator">(</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">update Post p set p.title = :title, p.description = :description, p.source = :source </span><span title="String" class="delimiter">"</span></span><span title="Space">
+      </span><span title="Operator">+</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">where p.id = :id</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space">
+  </span><span title="Type" class="type">int</span><span title="Space"> </span><span title="Ident">updatePost</span><span title="Operator">(</span><span title="Space">
+      </span><span title="Annotation" class="annotation">@Param</span><span title="Operator">(</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">id</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">Long</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">,</span><span title="Space">
+      </span><span title="Annotation" class="annotation">@Param</span><span title="Operator">(</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">title</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">title</span><span title="Operator">,</span><span title="Space">
+      </span><span title="Annotation" class="annotation">@Param</span><span title="Operator">(</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">description</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">description</span><span title="Operator">,</span><span title="Space">
+      </span><span title="Annotation" class="annotation">@Param</span><span title="Operator">(</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">source</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">source</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  
+</span><span title="Operator">}</span><span title="Space">
+</span></pre></td>
+</tr></tbody></table>
+
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Teraz Musimy utworzyć klasę PostService z adnotacją @Service i dodać pole postRepository. Ta klasa komunikuje się pomiędzy bazą a naszym kontrolerem. Należy umieścić w niej wszystkie funkcje które będą dokonywały zmian w bazie tak jak poniżej.
+                                            </br>
+                                            </p>
+
+
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a>
+<strong><a href="#n20" name="n20">20</a></strong>
+<a href="#n21" name="n21">21</a>
+<a href="#n22" name="n22">22</a>
+<a href="#n23" name="n23">23</a>
+<a href="#n24" name="n24">24</a>
+<a href="#n25" name="n25">25</a>
+<a href="#n26" name="n26">26</a>
+<a href="#n27" name="n27">27</a>
+<a href="#n28" name="n28">28</a>
+<a href="#n29" name="n29">29</a>
+<strong><a href="#n30" name="n30">30</a></strong>
+<a href="#n31" name="n31">31</a>
+<a href="#n32" name="n32">32</a>
+<a href="#n33" name="n33">33</a>
+<a href="#n34" name="n34">34</a>
+<a href="#n35" name="n35">35</a>
+<a href="#n36" name="n36">36</a>
+<a href="#n37" name="n37">37</a>
+<a href="#n38" name="n38">38</a>
+<a href="#n39" name="n39">39</a>
+<strong><a href="#n40" name="n40">40</a></strong>
+<a href="#n41" name="n41">41</a>
+<a href="#n42" name="n42">42</a>
+<a href="#n43" name="n43">43</a>
+<a href="#n44" name="n44">44</a>
+<a href="#n45" name="n45">45</a>
+<a href="#n46" name="n46">46</a></pre></td>
+  <td class="code"><pre><span title="Annotation" class="annotation">@Service</span><span title="Space">
+</span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Type" class="type">class</span><span title="Space"> </span><span title="Class" class="class">PostService</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@Autowired</span><span title="Space">
+  </span><span title="Directive" class="directive">private</span><span title="Space"> </span><span title="Ident">PostRepository</span><span title="Space"> </span><span title="Ident">postRepository</span><span title="Operator">;</span><span title="Space">
+  
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">List</span><span title="Operator">&lt;</span><span title="Ident">Post</span><span title="Operator">&gt;</span><span title="Space"> </span><span title="Ident">list</span><span title="Operator">(</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">findAll</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">findOneById</span><span title="Operator">(</span><span title="Predefined Type" class="predefined-type">Long</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">findOneById</span><span title="Operator">(</span><span title="Ident">id</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">findOneByTitle</span><span title="Operator">(</span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">title</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">findOneByTitle</span><span title="Operator">(</span><span title="Ident">title</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">add</span><span title="Operator">(</span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">beer</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Keyword" class="keyword">if</span><span title="Space"> </span><span title="Operator">(</span><span title="Local Variable" class="local-variable">this</span><span title="Operator">.</span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">findOneById</span><span title="Operator">(</span><span title="Ident">beer</span><span title="Operator">.</span><span title="Ident">getId</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">==</span><span title="Space"> </span><span title="Predefined Constant" class="predefined-constant">null</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+      </span><span title="Local Variable" class="local-variable">this</span><span title="Operator">.</span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">save</span><span title="Operator">(</span><span title="Ident">beer</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+      </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Ident">beer</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Operator">}</span><span title="Keyword" class="keyword">else</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+      </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Predefined Constant" class="predefined-constant">null</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Operator">}</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">Boolean</span><span title="Space"> </span><span title="Ident">delete</span><span title="Operator">(</span><span title="Predefined Type" class="predefined-type">Long</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+        </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">post</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">findOneById</span><span title="Operator">(</span><span title="Ident">id</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Keyword" class="keyword">if</span><span title="Space"> </span><span title="Operator">(</span><span title="Space"> </span><span title="Ident">post</span><span title="Space"> </span><span title="Operator">!=</span><span title="Space"> </span><span title="Predefined Constant" class="predefined-constant">null</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+          </span><span title="Local Variable" class="local-variable">this</span><span title="Operator">.</span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">delete</span><span title="Operator">(</span><span title="Ident">post</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+          </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Predefined Constant" class="predefined-constant">true</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Operator">}</span><span title="Space"> </span><span title="Keyword" class="keyword">else</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+          </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Predefined Constant" class="predefined-constant">false</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Operator">}</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+    </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">update</span><span title="Operator">(</span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">post</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+        </span><span title="Local Variable" class="local-variable">this</span><span title="Operator">.</span><span title="Ident">postRepository</span><span title="Operator">.</span><span title="Ident">updatePost</span><span title="Operator">(</span><span title="Space">
+                      </span><span title="Ident">post</span><span title="Operator">.</span><span title="Ident">getId</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">,</span><span title="Space"> 
+                      </span><span title="Ident">post</span><span title="Operator">.</span><span title="Ident">getTitle</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">,</span><span title="Space">
+                      </span><span title="Ident">post</span><span title="Operator">.</span><span title="Ident">getDescription</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">,</span><span title="Space">
+                      </span><span title="Ident">post</span><span title="Operator">.</span><span title="Ident">getSource</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Ident">post</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Operator">}</span><span title="Space">
+</span><span title="Operator">}</span></pre></td>
+</tr></tbody></table>
+
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Kolejnym krokiem było stworzenie kontrolera, który poprzez zapytania od użytkownika będzie wywoływał funkcje serwisu. Jeżeli nie chcemy umieszczać oznaczeń Requestów np. "method = RequestMethod.DELETE" należy zadbać o to aby nasze zmapowane adresy różniły się od siebie. Funkcja index odwraca kolekcję w celu wyświetlania na górze ostatnio dodanego postu zaraz pod formatką zapisu. Kontroler znajduje się poniżej.
+                                            </br>
+                                            </p>
+
+
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a>
+<strong><a href="#n20" name="n20">20</a></strong>
+<a href="#n21" name="n21">21</a>
+<a href="#n22" name="n22">22</a>
+<a href="#n23" name="n23">23</a>
+<a href="#n24" name="n24">24</a>
+<a href="#n25" name="n25">25</a>
+<a href="#n26" name="n26">26</a>
+<a href="#n27" name="n27">27</a>
+<a href="#n28" name="n28">28</a>
+<a href="#n29" name="n29">29</a>
+<strong><a href="#n30" name="n30">30</a></strong>
+<a href="#n31" name="n31">31</a>
+<a href="#n32" name="n32">32</a>
+<a href="#n33" name="n33">33</a>
+<a href="#n34" name="n34">34</a>
+<a href="#n35" name="n35">35</a>
+<a href="#n36" name="n36">36</a>
+<a href="#n37" name="n37">37</a>
+<a href="#n38" name="n38">38</a>
+<a href="#n39" name="n39">39</a>
+<strong><a href="#n40" name="n40">40</a></strong>
+<a href="#n41" name="n41">41</a>
+<a href="#n42" name="n42">42</a>
+<a href="#n43" name="n43">43</a>
+<a href="#n44" name="n44">44</a>
+<a href="#n45" name="n45">45</a></pre></td>
+  <td class="code"><pre><span title="Annotation" class="annotation">@Controller</span><span title="Space">
+</span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Type" class="type">class</span><span title="Space"> </span><span title="Class" class="class">PostController</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@Autowired</span><span title="Space">
+  </span><span title="Directive" class="directive">private</span><span title="Space"> </span><span title="Ident">PostService</span><span title="Space"> </span><span title="Ident">postService</span><span title="Operator">;</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@RequestMapping</span><span title="Operator">(</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space">
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">index</span><span title="Operator">(</span><span title="Ident">ModelMap</span><span title="Space"> </span><span title="Ident">map</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Predefined Type" class="predefined-type">List</span><span title="Operator">&lt;</span><span title="Ident">Post</span><span title="Operator">&gt;</span><span title="Space"> </span><span title="Ident">posts</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">postService</span><span title="Operator">.</span><span title="Ident">list</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Predefined Type" class="predefined-type">Collections</span><span title="Operator">.</span><span title="Ident">reverse</span><span title="Operator">(</span><span title="Ident">posts</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">map</span><span title="Operator">.</span><span title="Ident">addAttribute</span><span title="Operator">(</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">postList</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">posts</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">index</span><span title="String" class="delimiter">"</span></span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@RequestMapping</span><span title="Operator">(</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/posts</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">method</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">RequestMethod</span><span title="Operator">.</span><span title="Ident">GET</span><span title="Operator">)</span><span title="Space">
+  </span><span title="Annotation" class="annotation">@ResponseBody</span><span title="Space">
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">List</span><span title="Operator">&lt;</span><span title="Ident">Post</span><span title="Operator">&gt;</span><span title="Space"> </span><span title="Ident">getPosts</span><span title="Operator">(</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Ident">postService</span><span title="Operator">.</span><span title="Ident">list</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@RequestMapping</span><span title="Operator">(</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/posts/{id}</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">method</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">RequestMethod</span><span title="Operator">.</span><span title="Ident">GET</span><span title="Operator">)</span><span title="Space">
+  </span><span title="Annotation" class="annotation">@ResponseBody</span><span title="Space">
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">getPost</span><span title="Operator">(</span><span title="Annotation" class="annotation">@PathVariable</span><span title="Operator">(</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">id</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">Long</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="Ident">postService</span><span title="Operator">.</span><span title="Ident">findOneById</span><span title="Operator">(</span><span title="Ident">id</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@RequestMapping</span><span title="Operator">(</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/posts</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">method</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">RequestMethod</span><span title="Operator">.</span><span title="Ident">POST</span><span title="Operator">)</span><span title="Space">
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">savePost</span><span title="Operator">(</span><span title="Annotation" class="annotation">@Valid</span><span title="Space"> </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">post</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Ident">postService</span><span title="Operator">.</span><span title="Ident">add</span><span title="Operator">(</span><span title="Ident">post</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">redirect:/</span><span title="String" class="delimiter">"</span></span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@RequestMapping</span><span title="Operator">(</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/posts/{id}</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">method</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">RequestMethod</span><span title="Operator">.</span><span title="Ident">DELETE</span><span title="Operator">)</span><span title="Space">
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">deletePost</span><span title="Operator">(</span><span title="Annotation" class="annotation">@PathVariable</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">Long</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Ident">postService</span><span title="Operator">.</span><span title="Ident">delete</span><span title="Operator">(</span><span title="Ident">id</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">redirect:/</span><span title="String" class="delimiter">"</span></span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@RequestMapping</span><span title="Operator">(</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/posts</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">method</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">RequestMethod</span><span title="Operator">.</span><span title="Ident">PUT</span><span title="Operator">)</span><span title="Space">
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">String</span><span title="Space"> </span><span title="Ident">updatePost</span><span title="Operator">(</span><span title="Annotation" class="annotation">@Valid</span><span title="Space"> </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">post</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Ident">postService</span><span title="Operator">.</span><span title="Ident">update</span><span title="Operator">(</span><span title="Ident">post</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Keyword" class="keyword">return</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">redirect:/</span><span title="String" class="delimiter">"</span></span><span title="Operator">;</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+
+</span><span title="Operator">}</span><span title="Space">
+</span></pre></td>
+</tr></tbody></table>
+
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Poniżej znajdziemy konfigurację naszej bazy lokalnej, należy ją umieścić w pliku application.properties w katalogu resources
+                                            </br>
+                                            </p>
+
+
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a></pre></td>
+  <td class="code"><pre><span title="Error" class="error">#</span><span title="Space"> </span><span title="Ident">Database</span><span title="Space"> </span><span title="Ident">Config</span><span title="Space">
+</span><span title="Error" class="error">#</span><span title="Space"> </span><span title="Ident">Un</span><span title="Operator">-</span><span title="Ident">comment</span><span title="Space"> </span><span title="Ident">these</span><span title="Space"> </span><span title="Ident">lines</span><span title="Space"> </span><span title="Ident">to</span><span title="Space"> </span><span title="Ident">connect</span><span title="Space"> </span><span title="Ident">to</span><span title="Space"> </span><span title="Ident">a</span><span title="Space"> </span><span title="Ident">database</span><span title="Operator">.</span><span title="Space"> </span><span title="Ident">When</span><span title="Space"> </span><span title="Ident">commented</span><span title="Space"> </span><span title="Ident">out</span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">you</span><span title="Space"> </span><span title="Ident">automatically</span><span title="Space"> </span><span title="Ident">get</span><span title="Space"> </span><span title="Ident">an</span><span title="Space"> </span><span title="Ident">in</span><span title="Operator">-</span><span title="Ident">memory</span><span title="Operator">-</span><span title="Ident">database</span><span title="Operator">.</span><span title="Space">
+</span><span title="Ident">spring</span><span title="Operator">.</span><span title="Ident">jpa</span><span title="Operator">.</span><span title="Ident">hibernate</span><span title="Operator">.</span><span title="Ident">ddl</span><span title="Operator">-</span><span title="Ident">auto</span><span title="Operator">=</span><span title="Ident">update</span><span title="Space">
+
+</span><span title="Ident">Dev</span><span title="Space">
+</span><span title="Ident">spring</span><span title="Operator">.</span><span title="Ident">datasource</span><span title="Operator">.</span><span title="Ident">url</span><span title="Operator">=</span><span title="Ident">jdbc</span><span title="Operator">:</span><span title="Ident">h2</span><span title="Operator">:</span><span title="Ident">file</span><span title="Operator">:</span><span title="Operator">~</span><span title="Operator">/</span><span title="Ident">microBlog</span><span title="Space">
+</span><span title="Ident">spring</span><span title="Operator">.</span><span title="Ident">datasource</span><span title="Operator">.</span><span title="Ident">username</span><span title="Operator">=</span><span title="Ident">sa</span><span title="Space">
+</span><span title="Ident">spring</span><span title="Operator">.</span><span title="Ident">datasource</span><span title="Operator">.</span><span title="Ident">password</span><span title="Operator">=</span><span title="Ident">student</span><span title="Space">
+</span><span title="Ident">spring</span><span title="Operator">.</span><span title="Ident">datasource</span><span title="Operator">.</span><span title="Ident">driver</span><span title="Operator">-</span><span title="Type" class="type">class</span><span title="Operator">-</span><span title="Class" class="class">name</span><span title="Operator">=</span><span title="Ident">org</span><span title="Operator">.</span><span title="Ident">h2</span><span title="Operator">.</span><span title="Ident">Driver</span><span title="Space">
+</span><span title="Ident">spring</span><span title="Operator">.</span><span title="Ident">jpa</span><span title="Operator">.</span><span title="Ident">show</span><span title="Operator">-</span><span title="Ident">sql</span><span title="Operator">=</span><span title="Predefined Constant" class="predefined-constant">true</span><span title="Space">
+
+</span><span title="Ident">spring</span><span title="Operator">.</span><span title="Ident">thymeleaf</span><span title="Operator">.</span><span title="Ident">cache</span><span title="Operator">=</span><span title="Predefined Constant" class="predefined-constant">false</span></pre></td>
+</tr></tbody></table>
+
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Dodajmy dane do bazy abyśmy mogli czymś operować tworząc klasę InitData. Będzie korzystała z naszego serwisu aby zapisać dane do bazy.
+                                            </br>
+                                            </p>
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a>
+<strong><a href="#n20" name="n20">20</a></strong>
+<a href="#n21" name="n21">21</a>
+<a href="#n22" name="n22">22</a>
+<a href="#n23" name="n23">23</a>
+<a href="#n24" name="n24">24</a>
+<a href="#n25" name="n25">25</a>
+<a href="#n26" name="n26">26</a>
+<a href="#n27" name="n27">27</a></pre></td>
+  <td class="code"><pre><span title="Annotation" class="annotation">@Component</span><span title="Space">
+</span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Type" class="type">class</span><span title="Space"> </span><span title="Class" class="class">InitData</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@Autowired</span><span title="Space">
+  </span><span title="Directive" class="directive">private</span><span title="Space"> </span><span title="Ident">PostService</span><span title="Space"> </span><span title="Ident">postService</span><span title="Operator">;</span><span title="Space">
+  
+  </span><span title="Annotation" class="annotation">@PostConstruct</span><span title="Space">
+  </span><span title="Directive" class="directive">public</span><span title="Space"> </span><span title="Type" class="type">void</span><span title="Space"> </span><span title="Ident">init</span><span title="Operator">(</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    
+    </span><span title="Predefined Type" class="predefined-type">List</span><span title="Operator">&lt;</span><span title="Ident">Post</span><span title="Operator">&gt;</span><span title="Space"> </span><span title="Ident">posts</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Keyword" class="keyword">new</span><span title="Space"> </span><span title="Predefined Type" class="predefined-type">ArrayList</span><span title="Operator">&lt;</span><span title="Ident">Post</span><span title="Operator">&gt;</span><span title="Operator">(</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">post</span><span title="Operator">;</span><span title="Space">
+    
+    </span><span title="Ident">post</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Keyword" class="keyword">new</span><span title="Space"> </span><span title="Ident">Post</span><span title="Operator">(</span><span title="Integer" class="integer">1L</span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Mobile UX</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Projektowanie UX</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Aplikacje Informatyczne w Biznesie </span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">posts</span><span title="Operator">.</span><span title="Ident">add</span><span title="Operator">(</span><span title="Ident">post</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">post</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Keyword" class="keyword">new</span><span title="Space"> </span><span title="Ident">Post</span><span title="Operator">(</span><span title="Integer" class="integer">2L</span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Nowości w IT</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Blog poświęcony nowoczesnym technologiom IT</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">dailyweb.pl</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">posts</span><span title="Operator">.</span><span title="Ident">add</span><span title="Operator">(</span><span title="Ident">post</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">post</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Keyword" class="keyword">new</span><span title="Space"> </span><span title="Ident">Post</span><span title="Operator">(</span><span title="Integer" class="integer">3L</span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">TDD</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Python TDD</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Niezawodny kod w języku Python. Chimera</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">posts</span><span title="Operator">.</span><span title="Ident">add</span><span title="Operator">(</span><span title="Ident">post</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">post</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Keyword" class="keyword">new</span><span title="Space"> </span><span title="Ident">Post</span><span title="Operator">(</span><span title="Integer" class="integer">4L</span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Książki IT</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Strona z książkami</span><span title="String" class="delimiter">"</span></span><span title="Operator">,</span><span title="Space"> </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">helion.pl</span><span title="String" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Ident">posts</span><span title="Operator">.</span><span title="Ident">add</span><span title="Operator">(</span><span title="Ident">post</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    
+    </span><span title="Keyword" class="keyword">for</span><span title="Operator">(</span><span title="Ident">Post</span><span title="Space"> </span><span title="Ident">p</span><span title="Space"> </span><span title="Operator">:</span><span title="Space"> </span><span title="Ident">posts</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+      </span><span title="Ident">postService</span><span title="Operator">.</span><span title="Ident">add</span><span title="Operator">(</span><span title="Ident">p</span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+    </span><span title="Operator">}</span><span title="Space">
+  </span><span title="Operator">}</span><span title="Space">
+  
+</span><span title="Operator">}</span></pre></td>
+</tr></tbody></table>
+                                           </div>
+                                           
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Oczywiście nie ma tu jeszcze warstwy view z którą kontroler komunikuje się za pomocą znaczninków xhtml z thymeleaf. Poniższy fragment kodu HTML będzie odpowiedzialny za wypisywanie w tabelce rekordów z naszej bazy wraz z dwoma przyciskami Edytuj orazz Usuń.
+                                            </br>
+                                            </p>
+
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a>
+<strong><a href="#n20" name="n20">20</a></strong>
+<a href="#n21" name="n21">21</a></pre></td>
+  <td class="code"><pre><span title="Space">                  </span><span title="Tag" class="tag">&lt;tbody&gt;</span><span title="Space">
+                    </span><span title="Tag" class="tag">&lt;tr</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">ng2-smart-row</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:each</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">post : ${postList}</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;td</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:text</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">${post.id}</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Tag" class="tag">&lt;/td&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;td</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:text</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">${post.title}</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Tag" class="tag">&lt;/td&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;td</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:text</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">${post.description}</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Tag" class="tag">&lt;/td&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;td</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:text</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">${post.source}</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Tag" class="tag">&lt;/td&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;td&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">hidden</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:value</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">${post}</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">btn btn-hero btn-warning</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">submit</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">value</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Edytuj</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:attr</span><span title="Operator">=</span><span title="Space">
+                        </span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">onclick='javascript:showhideEdit(\'' </span><span title="Space">
+                        </span><span title="String" class="content">+ ${post.id} + '\',\'' + ${post.title} + '\',\'' </span><span title="Space">
+                        </span><span title="String" class="content">+ ${post.description}  + '\',\'' + ${post.source} </span><span title="Space">
+                        </span><span title="String" class="content">+ '\');'</span><span title="String" class="delimiter">"</span></span><span title="Space">  </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;/td&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;td&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;form</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:action</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">@{/posts/} + ${post.id}</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:method</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">DELETE</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                          </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">btn btn-hero-danger</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">submit</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">value</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Usuń</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;/form&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;/td&gt;</span><span title="Space">
+                    </span><span title="Tag" class="tag">&lt;/tr&gt;</span><span title="Space">
+                  </span><span title="Tag" class="tag">&lt;/tbody&gt;</span></pre></td>
+</tr></tbody></table>
+
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Przycisk Edytuj wykorzystuje funkcję napisaną w javascript'cie znajdującą się na początku pliku HTML. Ta funkcja przekazuje dane postu z tabeli do formatki edycji.
+                                            </br>
+                                            </p>
+
+                                            <table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a></pre></td>
+  <td class="code"><pre><span title="Space">  </span><span title="Tag" class="tag">&lt;script</span><span title="Space">  </span><span title="Attribute Name" class="attribute-name">th:inline</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">javascript</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+</span><span title="Inline" class="inline"><span title="Space">    </span><span title="Keyword" class="keyword">function</span><span title="Space"> </span><span title="Function" class="function">showhideEdit</span><span title="Operator">(</span><span title="Ident">id</span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">title</span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">description</span><span title="Operator">,</span><span title="Space"> </span><span title="Ident">source</span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+    </span><span title="Keyword" class="keyword">var</span><span title="Space"> </span><span title="Ident">x</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">document</span><span title="Operator">.</span><span title="Ident">getElementById</span><span title="Operator">(</span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">edit</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">;</span><span title="Space">
+      </span><span title="Keyword" class="keyword">if</span><span title="Space"> </span><span title="Operator">(</span><span title="Ident">x</span><span title="Operator">.</span><span title="Ident">style</span><span title="Operator">.</span><span title="Ident">display</span><span title="Space"> </span><span title="Operator">===</span><span title="Space"> </span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">none</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">)</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+        </span><span title="Ident">document</span><span title="Operator">.</span><span title="Ident">getElementById</span><span title="Operator">(</span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">editTitle</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">.</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">title</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Ident">document</span><span title="Operator">.</span><span title="Ident">getElementById</span><span title="Operator">(</span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">editDescription</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">.</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">description</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Ident">document</span><span title="Operator">.</span><span title="Ident">getElementById</span><span title="Operator">(</span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">editSource</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">.</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">source</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Ident">document</span><span title="Operator">.</span><span title="Ident">getElementById</span><span title="Operator">(</span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">editId</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">)</span><span title="Operator">.</span><span title="Ident">value</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="Ident">id</span><span title="Operator">;</span><span title="Space">
+        </span><span title="Ident">x</span><span title="Operator">.</span><span title="Ident">style</span><span title="Operator">.</span><span title="Ident">display</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">block</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">;</span><span title="Space">
+      </span><span title="Operator">}</span><span title="Space"> </span><span title="Keyword" class="keyword">else</span><span title="Space"> </span><span title="Operator">{</span><span title="Space">
+        </span><span title="Ident">x</span><span title="Operator">.</span><span title="Ident">style</span><span title="Operator">.</span><span title="Ident">display</span><span title="Space"> </span><span title="Operator">=</span><span title="Space"> </span><span title="String" class="string"><span title="Inline" class="delimiter">"</span><span title="Inline" class="content">none</span><span title="Inline" class="delimiter">"</span></span><span title="Operator">;</span><span title="Space">
+      </span><span title="Operator">}</span><span title="Space">
+    </span><span title="Operator">}</span></span><span title="Space">
+  </span><span title="Tag" class="tag">&lt;/script&gt;</span></pre></td>
+</tr></tbody></table>
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Kod poniżej przedstawia formatkę edycji postu.
+                                            </br>
+                                            </p>
+<table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a>
+<strong><a href="#n20" name="n20">20</a></strong>
+<a href="#n21" name="n21">21</a>
+<a href="#n22" name="n22">22</a>
+<a href="#n23" name="n23">23</a>
+<a href="#n24" name="n24">24</a>
+<a href="#n25" name="n25">25</a>
+<a href="#n26" name="n26">26</a></pre></td>
+  <td class="code"><pre><span title="Space">                  </span><span title="Tag" class="tag">&lt;form</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:action</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">@{/posts}</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:object</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">${Post}</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">action</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/posts</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:method</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">PUT</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">m-3</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                    </span><span title="Tag" class="tag">&lt;fieldset&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">row </span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                          </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">form-control</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">placeholder</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Tytuł</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">text</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">id</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">editTitle</span><span title="String" class="delimiter">"</span></span><span title="Space"> 
+                          </span><span title="Attribute Name" class="attribute-name">name</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">title</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">required</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">required</span><span title="String" class="delimiter">"</span></span><span title="Space">   </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                          </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">form-control</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">placeholder</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Opis</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">text</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">id</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">editDescription</span><span title="String" class="delimiter">"</span></span><span title="Space">  
+                          </span><span title="Attribute Name" class="attribute-name">name</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">description</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">required</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">required</span><span title="String" class="delimiter">"</span></span><span title="Space">  </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                          </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">form-control</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">placeholder</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Źródło</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">text</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">id</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">editSource</span><span title="String" class="delimiter">"</span></span><span title="Space"> 
+                          </span><span title="Attribute Name" class="attribute-name">name</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">source</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">required</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">required</span><span title="String" class="delimiter">"</span></span><span title="Space">  </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                          </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">hidden</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">id</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">editId</span><span title="String" class="delimiter">"</span></span><span title="Space">  </span><span title="Attribute Name" class="attribute-name">name</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">id</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                          </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">btn btn-success btn-round btn-demo w-100 </span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">submit</span><span title="String" class="delimiter">"</span></span><span title="Space"> 
+                          </span><span title="Attribute Name" class="attribute-name">value</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Zapisz</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                    </span><span title="Tag" class="tag">&lt;/fieldset&gt;</span><span title="Space">
+                    </span><span title="Tag" class="tag">&lt;fieldset&gt;</span><span title="Space">
+                      
+                    </span><span title="Tag" class="tag">&lt;/fieldset&gt;</span><span title="Space">
+                  </span><span title="Tag" class="tag">&lt;/form&gt;</span></pre></td>
+</tr></tbody></table>
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                    Ostatni blok przedstawia formatkę dodawania postów.
+                                            </br>
+                                            </p>
+
+                                            <table class="CodeRay"><tbody><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a>
+<strong><a href="#n20" name="n20">20</a></strong>
+<a href="#n21" name="n21">21</a>
+<a href="#n22" name="n22">22</a>
+<a href="#n23" name="n23">23</a></pre></td>
+  <td class="code"><pre><span title="Space">                </span><span title="Tag" class="tag">&lt;form</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:action</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">@{/posts}</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:object</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">${Post}</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">action</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">/posts</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">th:method</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">POST</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">m-3</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                  </span><span title="Tag" class="tag">&lt;fieldset&gt;</span><span title="Space">
+                    </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">row </span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">form-control</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">placeholder</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Tytuł</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">text</span><span title="String" class="delimiter">"</span></span><span title="Space">   
+                        </span><span title="Attribute Name" class="attribute-name">name</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">title</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">required</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">required</span><span title="String" class="delimiter">"</span></span><span title="Space">   </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">form-control</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">placeholder</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Opis</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">text</span><span title="String" class="delimiter">"</span></span><span title="Space">   
+                        </span><span title="Attribute Name" class="attribute-name">name</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">description</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">required</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">required</span><span title="String" class="delimiter">"</span></span><span title="Space">  </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">form-control</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">placeholder</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Źródło</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">text</span><span title="String" class="delimiter">"</span></span><span title="Space">  
+                        </span><span title="Attribute Name" class="attribute-name">name</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">source</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">required</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">required</span><span title="String" class="delimiter">"</span></span><span title="Space">  </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;div</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">input-group input-group-rounded col-sm-3 h-75</span><span title="String" class="delimiter">"</span></span><span title="Tag" class="tag">&gt;</span><span title="Space">
+                        </span><span title="Tag" class="tag">&lt;input</span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">class</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">btn btn-hero-success main-btn w-100 </span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">type</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">submit</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Attribute Name" class="attribute-name">value</span><span title="Operator">=</span><span title="String" class="string"><span title="String" class="delimiter">"</span><span title="String" class="content">Dodaj</span><span title="String" class="delimiter">"</span></span><span title="Space"> </span><span title="Tag" class="tag">/&gt;</span><span title="Space">
+                      </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                    </span><span title="Tag" class="tag">&lt;/div&gt;</span><span title="Space">
+                  </span><span title="Tag" class="tag">&lt;/fieldset&gt;</span><span title="Space">
+                  </span><span title="Tag" class="tag">&lt;fieldset&gt;</span><span title="Space">
+                  </span><span title="Tag" class="tag">&lt;/fieldset&gt;</span><span title="Space">
+                </span><span title="Tag" class="tag">&lt;/form&gt;</span></pre></td>
+</tr></tbody></table>
+
+                                            <p class="p-2" style="color:#3D3780 !important; font-family:'Arial' !important; text-align:justify;">
+                                                   Toturial jest bardzo skrótowy. Część View należy prześledzić z finalną wersją projektu dostępną pod tym linkiem <a href="https://github.com/PeterPorzuczek/microBlog-workshop">https://github.com/PeterPorzuczek/microBlog-workshop</a>.
+                                            </br>
+                                            </p>
+
+                                    </nb-card-body>
+                                </nb-card>
+							</div>
+						</nb-layout-column >
+					</div>
+				</div>
+			</div>
+		</div>
+		</nb-layout>
+	</body>
+</html>
