@@ -4,6 +4,7 @@ Web application created as an example use of Spring Boot. Built during workshop 
 Simple app for collecting interesting information with source.
 Here you can check out the live version:
 [MicroBlog](https://lider-microblog.herokuapp.com) (Refresh page few times to wake Heroku up :)
+Presentation in polish: [Prezentacja](https://drive.google.com/file/d/1VuVEQ0u3sbxhr7N1afcEO4SqBsX7pSUA/view?usp=sharing)
 
 Screenshots
 ========
