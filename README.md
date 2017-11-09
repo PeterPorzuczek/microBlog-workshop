@@ -14,7 +14,7 @@ Presentation in polish - [Prezentacja](https://drive.google.com/file/d/1VuVEQ0u3
 Screenshots
 ========
 <div>
-<img src="https://i.imgur.com/JZGvFiu.png" alt="app-preview" width="470" height="317">
+<img src="https://i.imgur.com/JZGvFiu.png" alt="app-preview"  height="317">
 </div>
 
 Deployment
