@@ -4,9 +4,6 @@ Web application created as an example use of Spring Boot. Built during workshop 
 Here you can check out the live version:
 [MicroBlog](https://lider-microblog.herokuapp.com)
 
-Tutorial in polish:
-[MicroBlog](https://lider-microblog.herokuapp.com)
-
 Screenshots
 ========
 <div>
