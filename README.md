@@ -14,11 +14,11 @@ Screenshots
 
 Deployment
 ========
-First compile application
+Compile application
 ----
 	$ ./mvnw clean install
 ----
-Than run application
+Run application
 ----
 	$ ./mvnw spring-boot:run
 
