@@ -1,4 +1,5 @@
-# Spring Framework Live Coding MicroBlog - Lider Workshop Days
+# Spring Framework Live Coding - Lider Workshop Days
+## MicroBlog
 Web application created as an example use of Spring Boot. Built during workshop I did for Lider Workshop Days.
 
 Here you can check out the live version:
