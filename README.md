@@ -31,7 +31,7 @@ Built With
 ========
 * [Spring](https://spring.io) - Spring Boot used.
 * [Nebular](https://github.com/akveo/nebular) - Nebular CSS style classes.
-* [Bbootstrap-4](https://v4-alpha.getbootstrap.com) - Nebular is based on bootstrap 4.
+* [Bootstrap-4](https://v4-alpha.getbootstrap.com) - Nebular is based on bootstrap 4.
 * [Jquery](https://jquery.com) - For web requests.
 
 License
